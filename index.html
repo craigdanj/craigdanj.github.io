@@ -1,0 +1,1062 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#090c0f" />
+    <meta
+      name="description"
+      content="Craig Johnson is a frontend engineer building durable interfaces, developer tools, and open-source music software."
+    />
+    <title>Craig Johnson — Frontend Engineer</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Manrope:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="icon"
+      type="image/svg+xml"
+      href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23090c0f'/%3E%3Cpath d='M18 23c3-7 9-11 17-11 6 0 11 2 14 6l-7 7c-2-2-4-3-7-3-6 0-10 4-10 10s4 10 10 10c3 0 5-1 7-3l7 7c-3 4-8 6-14 6-8 0-14-4-17-11-2-6-2-12 0-18Z' fill='%23c8ff3d'/%3E%3C/svg%3E"
+    />
+    <style>
+      :root {
+        --ink: #090c0f;
+        --panel: #11161b;
+        --panel-2: #171d23;
+        --line: #2a323a;
+        --paper: #f4f1e8;
+        --muted: #9ca6ad;
+        --acid: #c8ff3d;
+        --blue: #74a8ff;
+        --max: 1180px;
+        --radius: 1.1rem;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+      html {
+        scroll-behavior: smooth;
+      }
+      body {
+        margin: 0;
+        background: var(--ink);
+        color: var(--paper);
+        font-family: "Manrope", system-ui, sans-serif;
+        font-size: 1rem;
+        line-height: 1.6;
+        overflow-x: hidden;
+      }
+      body::before {
+        content: "";
+        position: fixed;
+        inset: 0;
+        z-index: -2;
+        background:
+          radial-gradient(
+            circle at var(--mx, 82%) var(--my, 12%),
+            rgba(116, 168, 255, 0.1),
+            transparent 26rem
+          ),
+          linear-gradient(rgba(255, 255, 255, 0.018) 1px, transparent 1px),
+          linear-gradient(
+            90deg,
+            rgba(255, 255, 255, 0.018) 1px,
+            transparent 1px
+          );
+        background-size:
+          auto,
+          64px 64px,
+          64px 64px;
+      }
+      a {
+        color: inherit;
+      }
+      button,
+      a {
+        -webkit-tap-highlight-color: transparent;
+      }
+      :focus-visible {
+        outline: 3px solid var(--acid);
+        outline-offset: 4px;
+      }
+      .skip {
+        position: fixed;
+        left: 1rem;
+        top: -5rem;
+        z-index: 100;
+        background: var(--acid);
+        color: var(--ink);
+        padding: 0.75rem 1rem;
+        border-radius: 0.5rem;
+        font-weight: 700;
+      }
+      .skip:focus {
+        top: 1rem;
+      }
+      .shell {
+        width: min(calc(100% - 2.5rem), var(--max));
+        margin-inline: auto;
+      }
+      .mono {
+        font-family: "DM Mono", monospace;
+      }
+
+      header {
+        position: sticky;
+        top: 0;
+        z-index: 20;
+        background: rgba(9, 12, 15, 0.82);
+        border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+        backdrop-filter: blur(18px);
+      }
+      .nav {
+        min-height: 4.75rem;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 2rem;
+      }
+      .brand {
+        text-decoration: none;
+        display: inline-flex;
+        align-items: center;
+        gap: 0.75rem;
+        font-weight: 800;
+        letter-spacing: -0.03em;
+      }
+      .mark {
+        display: grid;
+        place-items: center;
+        width: 2.2rem;
+        aspect-ratio: 1;
+        border-radius: 0.65rem;
+        background: var(--acid);
+        color: var(--ink);
+        font-size: 0.85rem;
+        letter-spacing: -0.08em;
+        transform: rotate(-3deg);
+      }
+      nav {
+        display: flex;
+        align-items: center;
+        gap: 1.6rem;
+      }
+      nav a {
+        color: var(--muted);
+        text-decoration: none;
+        font-size: 0.9rem;
+        font-weight: 600;
+        transition: color 0.2s ease;
+      }
+      nav a:hover {
+        color: var(--paper);
+      }
+      .nav-github {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.45rem;
+      }
+      .nav-github::after {
+        content: "↗";
+        color: var(--acid);
+      }
+
+      .hero {
+        min-height: calc(100svh - 4.75rem);
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) 18rem;
+        align-items: center;
+        gap: 6rem;
+        padding-block: 6rem;
+      }
+      .eyebrow {
+        display: flex;
+        align-items: center;
+        gap: 0.7rem;
+        color: var(--acid);
+        text-transform: uppercase;
+        letter-spacing: 0.12em;
+        font-size: 0.78rem;
+        font-weight: 500;
+        margin: 0 0 1.7rem;
+      }
+      .eyebrow::before {
+        content: "";
+        width: 2.25rem;
+        height: 1px;
+        background: currentColor;
+      }
+      h1 {
+        max-width: 920px;
+        margin: 0;
+        font-size: clamp(3.6rem, 8.2vw, 7.9rem);
+        font-weight: 700;
+        letter-spacing: -0.075em;
+        line-height: 0.91;
+      }
+      h1 span {
+        color: transparent;
+        -webkit-text-stroke: 1.5px rgba(244, 241, 232, 0.47);
+      }
+      .hero-copy {
+        display: grid;
+        grid-template-columns: minmax(0, 36rem) auto;
+        align-items: end;
+        gap: 2rem;
+        margin-top: 2.5rem;
+      }
+      .hero-copy p {
+        color: var(--muted);
+        margin: 0;
+        font-size: 1.08rem;
+      }
+      .hero-copy strong {
+        color: var(--paper);
+        font-weight: 600;
+      }
+      .cta-row {
+        display: flex;
+        gap: 0.8rem;
+        flex-wrap: wrap;
+      }
+      .button {
+        min-height: 3.15rem;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 0.7rem;
+        padding: 0.75rem 1.15rem;
+        border: 1px solid var(--line);
+        border-radius: 0.75rem;
+        text-decoration: none;
+        font-size: 0.9rem;
+        font-weight: 700;
+        transition:
+          transform 0.2s ease,
+          background 0.2s ease,
+          border-color 0.2s ease;
+      }
+      .button:hover {
+        transform: translateY(-2px);
+        border-color: #59636d;
+        background: rgba(255, 255, 255, 0.04);
+      }
+      .button.primary {
+        background: var(--acid);
+        color: var(--ink);
+        border-color: var(--acid);
+      }
+      .button.primary:hover {
+        background: #d5ff6b;
+      }
+      .button .arrow {
+        transition: transform 0.2s ease;
+      }
+      .button:hover .arrow {
+        transform: translate(2px, -2px);
+      }
+
+      .hero-aside {
+        border-left: 1px solid var(--line);
+        padding-left: 2rem;
+        display: grid;
+        gap: 2rem;
+      }
+      .metric {
+        padding-bottom: 1.8rem;
+        border-bottom: 1px solid var(--line);
+      }
+      .metric:last-child {
+        border: 0;
+        padding-bottom: 0;
+      }
+      .metric strong {
+        display: block;
+        font-size: 2.4rem;
+        letter-spacing: -0.06em;
+        line-height: 1;
+      }
+      .metric span {
+        display: block;
+        color: var(--muted);
+        font-size: 0.82rem;
+        margin-top: 0.5rem;
+      }
+      .scroll-note {
+        writing-mode: vertical-rl;
+        transform: rotate(180deg);
+        color: #5e6870;
+        font-size: 0.68rem;
+        letter-spacing: 0.18em;
+        text-transform: uppercase;
+        position: absolute;
+        right: 2rem;
+        bottom: 2rem;
+      }
+
+      section {
+        padding-block: 7rem;
+      }
+      .section-head {
+        display: grid;
+        grid-template-columns: 9rem minmax(0, 1fr);
+        gap: 2rem;
+        align-items: start;
+        margin-bottom: 3.5rem;
+      }
+      .kicker {
+        color: var(--acid);
+        font-size: 0.74rem;
+        text-transform: uppercase;
+        letter-spacing: 0.14em;
+        padding-top: 0.65rem;
+      }
+      h2 {
+        margin: 0;
+        font-size: clamp(2.4rem, 5vw, 4.8rem);
+        line-height: 1.03;
+        letter-spacing: -0.06em;
+        max-width: 780px;
+      }
+      .project-stack {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 0.85rem;
+      }
+      .project {
+        position: relative;
+        display: grid;
+        grid-template-columns: 2.5rem minmax(0, 1fr);
+        grid-template-rows: auto 1fr auto;
+        gap: 0.8rem 1.15rem;
+        align-items: start;
+        min-height: 12.5rem;
+        padding: 1.35rem 1.45rem;
+        background: linear-gradient(
+          125deg,
+          rgba(255, 255, 255, 0.052),
+          rgba(255, 255, 255, 0.018)
+        );
+        border: 1px solid var(--line);
+        border-radius: var(--radius);
+        overflow: hidden;
+        transition:
+          border-color 0.25s ease,
+          transform 0.25s ease,
+          background 0.25s ease;
+      }
+      .project::after {
+        content: "";
+        position: absolute;
+        inset: auto -4rem -8rem auto;
+        width: 15rem;
+        height: 15rem;
+        background: radial-gradient(
+          circle,
+          color-mix(in srgb, var(--project-color) 22%, transparent),
+          transparent 70%
+        );
+        pointer-events: none;
+      }
+      .project:hover {
+        border-color: #4b565f;
+        transform: translateY(-3px);
+        background: linear-gradient(
+          125deg,
+          rgba(255, 255, 255, 0.07),
+          rgba(255, 255, 255, 0.022)
+        );
+      }
+      .project-index {
+        color: #68737b;
+        font-size: 0.72rem;
+        align-self: start;
+        padding-top: 0.32rem;
+      }
+      .project h3 {
+        margin: 0 0 0.35rem;
+        font-size: 1.5rem;
+        letter-spacing: -0.045em;
+        line-height: 1.15;
+      }
+      .project p {
+        margin: 0;
+        color: var(--muted);
+        max-width: 32rem;
+        font-size: 0.9rem;
+        line-height: 1.5;
+      }
+      .tags {
+        display: flex;
+        gap: 0.45rem;
+        flex-wrap: wrap;
+      }
+      .tag {
+        border: 1px solid var(--line);
+        color: #bbc2c6;
+        border-radius: 999px;
+        padding: 0.28rem 0.55rem;
+        font-size: 0.68rem;
+      }
+      .project .tags,
+      .project .project-links {
+        grid-column: 2;
+      }
+      .project-links {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.5rem;
+        z-index: 2;
+      }
+      .project-link {
+        white-space: nowrap;
+        display: inline-flex;
+        align-items: center;
+        gap: 0.35rem;
+        padding: 0.52rem 0.7rem;
+        border-radius: 0.55rem;
+        color: var(--paper);
+        border: 1px solid var(--line);
+        text-decoration: none;
+        font-size: 0.76rem;
+        font-weight: 700;
+      }
+      .project-link:hover {
+        border-color: var(--project-color);
+        color: var(--project-color);
+      }
+      .project-link.live {
+        background: var(--project-color);
+        color: var(--ink);
+        border-color: var(--project-color);
+      }
+      .project-link.live:hover {
+        color: var(--ink);
+        filter: brightness(1.08);
+      }
+      .work-footer {
+        margin-top: 2rem;
+        display: flex;
+        justify-content: flex-end;
+      }
+
+      .divider {
+        border-top: 1px solid var(--line);
+      }
+      .about-grid {
+        display: grid;
+        grid-template-columns: minmax(0, 1.2fr) minmax(18rem, 0.8fr);
+        gap: 7rem;
+      }
+      .about-copy h2 {
+        margin-bottom: 2rem;
+      }
+      .about-copy p {
+        color: var(--muted);
+        font-size: 1.08rem;
+        max-width: 43rem;
+      }
+      .about-copy p strong {
+        color: var(--paper);
+        font-weight: 600;
+      }
+      .capabilities {
+        display: grid;
+        align-content: start;
+        border-top: 1px solid var(--line);
+      }
+      .capability {
+        display: flex;
+        justify-content: space-between;
+        gap: 1rem;
+        padding: 1.15rem 0;
+        border-bottom: 1px solid var(--line);
+      }
+      .capability span:first-child {
+        color: var(--paper);
+        font-weight: 600;
+      }
+      .capability span:last-child {
+        color: #68737b;
+        font-size: 0.82rem;
+      }
+
+      .footer-wrap {
+        padding-block: 5rem 2rem;
+      }
+      .contact {
+        position: relative;
+        overflow: hidden;
+        border-radius: 1.4rem;
+        background: var(--acid);
+        color: var(--ink);
+        padding: clamp(2rem, 6vw, 5rem);
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) auto;
+        gap: 2rem;
+        align-items: end;
+      }
+      .contact::after {
+        content: "</>";
+        position: absolute;
+        top: -3rem;
+        right: 5rem;
+        font-size: 14rem;
+        font-weight: 800;
+        opacity: 0.07;
+        letter-spacing: -0.15em;
+        transform: rotate(-6deg);
+      }
+      .contact .kicker {
+        color: var(--ink);
+        opacity: 0.7;
+        padding: 0;
+        margin-bottom: 1rem;
+      }
+      .contact h2 {
+        max-width: 740px;
+      }
+      .contact .button {
+        background: var(--ink);
+        color: var(--paper);
+        border-color: var(--ink);
+        z-index: 2;
+      }
+      .contact .button:hover {
+        background: #20272d;
+      }
+      .subfooter {
+        display: flex;
+        justify-content: space-between;
+        gap: 2rem;
+        align-items: center;
+        padding-top: 2rem;
+        color: #68737b;
+        font-size: 0.78rem;
+      }
+      .subfooter a {
+        text-decoration: none;
+        color: var(--muted);
+      }
+      .subfooter a:hover {
+        color: var(--paper);
+      }
+
+      .reveal {
+        opacity: 0;
+        transform: translateY(18px);
+        transition:
+          opacity 0.6s ease,
+          transform 0.6s ease;
+      }
+      .reveal.visible {
+        opacity: 1;
+        transform: none;
+      }
+
+      @media (max-width: 900px) {
+        .hero {
+          grid-template-columns: 1fr;
+          gap: 3rem;
+          min-height: auto;
+          padding-block: 5rem;
+        }
+        .hero-copy {
+          grid-template-columns: 1fr;
+          align-items: start;
+        }
+        .hero-aside {
+          grid-template-columns: repeat(3, 1fr);
+          border-left: 0;
+          border-top: 1px solid var(--line);
+          padding: 2rem 0 0;
+          gap: 1rem;
+        }
+        .metric {
+          border-bottom: 0;
+          border-right: 1px solid var(--line);
+          padding: 0 1rem 0 0;
+        }
+        .metric:last-child {
+          border-right: 0;
+        }
+        .scroll-note {
+          display: none;
+        }
+        .project-stack {
+          grid-template-columns: 1fr;
+        }
+        .project {
+          grid-template-columns: 3rem minmax(0, 1fr);
+          min-height: 0;
+          gap: 0.8rem 1rem;
+        }
+        .project .tags,
+        .project .project-links {
+          grid-column: 2;
+        }
+        .project-links {
+          justify-content: flex-start;
+        }
+        .about-grid {
+          grid-template-columns: 1fr;
+          gap: 3rem;
+        }
+      }
+
+      @media (max-width: 620px) {
+        .shell {
+          width: min(calc(100% - 1.5rem), var(--max));
+        }
+        .brand > span:last-child {
+          display: none;
+        }
+        nav {
+          gap: 1rem;
+        }
+        nav a:not(.nav-github) {
+          display: none;
+        }
+        .hero {
+          padding-block: 4rem;
+        }
+        h1 {
+          font-size: clamp(3.1rem, 16vw, 5.1rem);
+        }
+        .hero-aside {
+          grid-template-columns: 1fr 1fr;
+        }
+        .metric:nth-child(2) {
+          border-right: 0;
+        }
+        .metric:last-child {
+          grid-column: 1 / -1;
+          padding-top: 1rem;
+          border-top: 1px solid var(--line);
+        }
+        section {
+          padding-block: 5rem;
+        }
+        .section-head {
+          grid-template-columns: 1fr;
+          gap: 0.8rem;
+        }
+        .kicker {
+          padding-top: 0;
+        }
+        .project {
+          padding: 1.4rem;
+          grid-template-columns: 1fr;
+        }
+        .project-index,
+        .project .tags,
+        .project .project-links {
+          grid-column: 1;
+        }
+        .project-index {
+          padding: 0;
+        }
+        .project-links {
+          flex-wrap: wrap;
+        }
+        .project-link {
+          flex: 1;
+          justify-content: center;
+        }
+        .contact {
+          grid-template-columns: 1fr;
+        }
+        .contact .button {
+          justify-self: start;
+        }
+        .subfooter {
+          align-items: flex-start;
+          flex-direction: column;
+        }
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        html {
+          scroll-behavior: auto;
+        }
+        *,
+        *::before,
+        *::after {
+          animation-duration: 0.01ms !important;
+          transition-duration: 0.01ms !important;
+        }
+        .reveal {
+          opacity: 1;
+          transform: none;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <a class="skip" href="#main">Skip to content</a>
+    <header>
+      <div class="shell nav">
+        <a class="brand" href="#top" aria-label="Craig Johnson, home">
+          <span class="mark mono">CJ</span>
+          <span>Craig Johnson</span>
+        </a>
+        <nav aria-label="Primary navigation">
+          <a href="#work">Work</a>
+          <a href="#about">About</a>
+          <a
+            class="nav-github"
+            href="https://github.com/craigdanj"
+            target="_blank"
+            rel="noreferrer"
+            >GitHub</a
+          >
+        </nav>
+      </div>
+    </header>
+
+    <main id="main">
+      <section class="shell hero" id="top">
+        <div>
+          <p class="eyebrow mono">Frontend engineer · Pune, India</p>
+          <h1>Building interfaces that <span>make life better.</span></h1>
+          <div class="hero-copy">
+            <p>
+              <strong>Lead software engineer with 14 years in frontend.</strong>
+              I turn complex product requirements into clear, resilient
+              experiences—and ship open-source tools for musicians and
+              developers.
+            </p>
+            <div class="cta-row">
+              <a class="button primary" href="#work"
+                >Selected work <span>↓</span></a
+              >
+              <a
+                class="button"
+                href="https://github.com/craigdanj"
+                target="_blank"
+                rel="noreferrer"
+                >GitHub <span class="arrow">↗</span></a
+              >
+            </div>
+          </div>
+        </div>
+        <aside class="hero-aside" aria-label="Highlights">
+          <div class="metric">
+            <strong>14+</strong><span>years building for the web</span>
+          </div>
+          <div class="metric">
+            <strong>06</strong><span>featured open-source projects</span>
+          </div>
+          <div class="metric">
+            <strong>2×</strong><span>framework-ready scheduler plugins</span>
+          </div>
+        </aside>
+        <span class="scroll-note mono" aria-hidden="true"
+          >Scroll to explore</span
+        >
+      </section>
+
+      <section class="divider" id="work">
+        <div class="shell">
+          <div class="section-head reveal">
+            <span class="kicker mono">01 / Selected work</span>
+            <h2>Small tools, thoughtfully engineered.</h2>
+          </div>
+
+          <div class="project-stack">
+            <article class="project reveal" style="--project-color: #c8ff3d">
+              <span class="project-index mono">01</span>
+              <div>
+                <h3>Chord Shape</h3>
+                <p>
+                  A focused toolkit for rendering clear, interactive chord
+                  diagrams on the web.
+                </p>
+              </div>
+              <div class="tags">
+                <span class="tag mono">JavaScript</span
+                ><span class="tag mono">Music UI</span
+                ><span class="tag mono">Open source</span>
+              </div>
+              <div class="project-links">
+                <a
+                  class="project-link live"
+                  href="https://chord-shape.vercel.app/"
+                  target="_blank"
+                  rel="noreferrer"
+                  >Live demo ↗</a
+                >
+                <a
+                  class="project-link"
+                  href="https://github.com/craigdanj/chord-shape-js"
+                  target="_blank"
+                  rel="noreferrer"
+                  >Source ↗</a
+                >
+              </div>
+            </article>
+
+            <article class="project reveal" style="--project-color: #f6bd60">
+              <span class="project-index mono">02</span>
+              <div>
+                <h3>Chord Atlas</h3>
+                <p>
+                  A visual chord reference designed for fast browsing,
+                  comparison, and musical discovery.
+                </p>
+              </div>
+              <div class="tags">
+                <span class="tag mono">JavaScript</span
+                ><span class="tag mono">Music UI</span
+                ><span class="tag mono">Chord library</span>
+              </div>
+              <div class="project-links">
+                <a
+                  class="project-link live"
+                  href="https://chord-atlas-amber.vercel.app/"
+                  target="_blank"
+                  rel="noreferrer"
+                  >Live demo ↗</a
+                >
+                <a
+                  class="project-link"
+                  href="https://github.com/craigdanj/chord-atlas"
+                  target="_blank"
+                  rel="noreferrer"
+                  >Source ↗</a
+                >
+              </div>
+            </article>
+
+            <article class="project reveal" style="--project-color: #74a8ff">
+              <span class="project-index mono">03</span>
+              <div>
+                <h3>Chord Sheet</h3>
+                <p>
+                  A JavaScript library for presenting readable, structured song
+                  sheets with chords and lyrics.
+                </p>
+              </div>
+              <div class="tags">
+                <span class="tag mono">JavaScript</span
+                ><span class="tag mono">Developer tool</span
+                ><span class="tag mono">Music</span>
+              </div>
+              <div class="project-links">
+                <a
+                  class="project-link live"
+                  href="https://chord-sheet-js.vercel.app/"
+                  target="_blank"
+                  rel="noreferrer"
+                  >Live demo ↗</a
+                >
+                <a
+                  class="project-link"
+                  href="https://github.com/craigdanj/chord-sheet-js"
+                  target="_blank"
+                  rel="noreferrer"
+                  >Source ↗</a
+                >
+              </div>
+            </article>
+
+            <article class="project reveal" style="--project-color: #ff8d70">
+              <span class="project-index mono">04</span>
+              <div>
+                <h3>Fretboard.js</h3>
+                <p>
+                  A configurable browser-based fretboard for exploring notes,
+                  scales, and musical patterns.
+                </p>
+              </div>
+              <div class="tags">
+                <span class="tag mono">JavaScript</span
+                ><span class="tag mono">Interactive UI</span
+                ><span class="tag mono">Guitar</span>
+              </div>
+              <div class="project-links">
+                <a
+                  class="project-link live"
+                  href="https://fretboard-js.vercel.app/"
+                  target="_blank"
+                  rel="noreferrer"
+                  >Live demo ↗</a
+                >
+                <a
+                  class="project-link"
+                  href="https://github.com/craigdanj/fretboard-js"
+                  target="_blank"
+                  rel="noreferrer"
+                  >Source ↗</a
+                >
+              </div>
+            </article>
+
+            <article class="project reveal" style="--project-color: #6ee7b7">
+              <span class="project-index mono">05</span>
+              <div>
+                <h3>View Day Schedule</h3>
+                <p>
+                  A day-scheduling component for React applications, built for
+                  clear time-based layouts.
+                </p>
+              </div>
+              <div class="tags">
+                <span class="tag mono">React</span
+                ><span class="tag mono">Scheduler</span
+                ><span class="tag mono">Component</span>
+              </div>
+              <div class="project-links">
+                <a
+                  class="project-link live"
+                  href="https://github.com/craigdanj/view-day-schedule"
+                  target="_blank"
+                  rel="noreferrer"
+                  >View on GitHub ↗</a
+                >
+              </div>
+            </article>
+
+            <article class="project reveal" style="--project-color: #8bd5ca">
+              <span class="project-index mono">06</span>
+              <div>
+                <h3>Vue Day Schedule</h3>
+                <p>
+                  The Vue counterpart: a reusable scheduler component for day
+                  and time-based interfaces.
+                </p>
+              </div>
+              <div class="tags">
+                <span class="tag mono">Vue</span
+                ><span class="tag mono">Scheduler</span
+                ><span class="tag mono">Component</span>
+              </div>
+              <div class="project-links">
+                <a
+                  class="project-link live"
+                  href="https://github.com/craigdanj/vue-day-schedule"
+                  target="_blank"
+                  rel="noreferrer"
+                  >View on GitHub ↗</a
+                >
+              </div>
+            </article>
+          </div>
+
+          <div class="work-footer reveal">
+            <a
+              class="button"
+              href="https://github.com/craigdanj?tab=repositories"
+              target="_blank"
+              rel="noreferrer"
+              >Explore all repositories <span class="arrow">↗</span></a
+            >
+          </div>
+        </div>
+      </section>
+
+      <section class="divider" id="about">
+        <div class="shell about-grid">
+          <div class="about-copy reveal">
+            <p class="kicker mono">02 / About</p>
+            <h2>Architecture-minded. Detail-obsessed.</h2>
+            <p>
+              I’m a frontend engineer who enjoys the layer where
+              <strong
+                >product thinking, systems design, and interaction
+                quality</strong
+              >
+              meet. My work spans frontend architecture, scalable UI
+              foundations, and the last 10% of polish that makes software feel
+              dependable.
+            </p>
+            <p>
+              Outside product work, I build open-source tools around
+              music—combining technical craft with a domain I genuinely enjoy.
+            </p>
+          </div>
+          <div class="capabilities reveal" aria-label="Areas of expertise">
+            <div class="capability">
+              <span>Frontend architecture</span><span class="mono">01</span>
+            </div>
+            <div class="capability">
+              <span>React &amp; Redux</span><span class="mono">02</span>
+            </div>
+            <div class="capability">
+              <span>Vue &amp; AngularJS</span><span class="mono">03</span>
+            </div>
+            <div class="capability">
+              <span>Design systems</span><span class="mono">04</span>
+            </div>
+            <div class="capability">
+              <span>HTML, CSS &amp; Tailwind</span><span class="mono">05</span>
+            </div>
+            <div class="capability">
+              <span>Developer experience</span><span class="mono">06</span>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="shell footer-wrap">
+      <div class="contact reveal">
+        <div>
+          <p class="kicker mono">Open source, in public</p>
+          <h2>See what I’m building next.</h2>
+        </div>
+        <a
+          class="button"
+          href="https://github.com/craigdanj"
+          target="_blank"
+          rel="noreferrer"
+          >Follow on GitHub <span class="arrow">↗</span></a
+        >
+      </div>
+      <div class="subfooter">
+        <span>© <span id="year"></span> Craig Johnson</span>
+        <span class="mono">Designed &amp; built for the web</span>
+        <a href="#top">Back to top ↑</a>
+      </div>
+    </footer>
+
+    <script>
+      document.getElementById("year").textContent = new Date().getFullYear();
+
+      const reduceMotion = window.matchMedia(
+        "(prefers-reduced-motion: reduce)",
+      ).matches;
+      const reveals = document.querySelectorAll(".reveal");
+      if (reduceMotion || !("IntersectionObserver" in window)) {
+        reveals.forEach((el) => el.classList.add("visible"));
+      } else {
+        const observer = new IntersectionObserver(
+          (entries) => {
+            entries.forEach((entry) => {
+              if (entry.isIntersecting) {
+                entry.target.classList.add("visible");
+                observer.unobserve(entry.target);
+              }
+            });
+          },
+          { threshold: 0.12 },
+        );
+        reveals.forEach((el) => observer.observe(el));
+      }
+
+      if (!reduceMotion && window.matchMedia("(pointer: fine)").matches) {
+        window.addEventListener(
+          "pointermove",
+          (event) => {
+            document.body.style.setProperty("--mx", `${event.clientX}px`);
+            document.body.style.setProperty("--my", `${event.clientY}px`);
+          },
+          { passive: true },
+        );
+      }
+    </script>
+  </body>
+</html>
