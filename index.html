@@ -30,7 +30,7 @@
         --muted: #9ca6ad;
         --acid: #c8ff3d;
         --blue: #74a8ff;
-        --max: 1180px;
+        --max: 1320px;
         --radius: 1.1rem;
       }
 
@@ -323,8 +323,8 @@
       }
       .project-stack {
         display: grid;
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-        gap: 0.85rem;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 1rem;
       }
       .project {
         position: relative;
@@ -333,8 +333,8 @@
         grid-template-rows: auto 1fr auto;
         gap: 0.8rem 1.15rem;
         align-items: start;
-        min-height: 12.5rem;
-        padding: 1.35rem 1.45rem;
+        min-height: 15rem;
+        padding: 1.2rem 1.25rem;
         background: linear-gradient(
           125deg,
           rgba(255, 255, 255, 0.052),
@@ -378,7 +378,7 @@
       }
       .project h3 {
         margin: 0 0 0.35rem;
-        font-size: 1.5rem;
+        font-size: 1.35rem;
         letter-spacing: -0.045em;
         line-height: 1.15;
       }
@@ -557,6 +557,15 @@
         transform: none;
       }
 
+      @media (max-width: 1180px) {
+        .project-stack {
+          grid-template-columns: repeat(2, minmax(0, 1fr));
+        }
+        .project {
+          min-height: 13.5rem;
+        }
+      }
+
       @media (max-width: 900px) {
         .hero {
           grid-template-columns: 1fr;
@@ -586,9 +595,6 @@
         .scroll-note {
           display: none;
         }
-        .project-stack {
-          grid-template-columns: 1fr;
-        }
         .project {
           grid-template-columns: 3rem minmax(0, 1fr);
           min-height: 0;
@@ -604,6 +610,12 @@
         .about-grid {
           grid-template-columns: 1fr;
           gap: 3rem;
+        }
+      }
+
+      @media (max-width: 700px) {
+        .project-stack {
+          grid-template-columns: 1fr;
         }
       }
 
@@ -756,7 +768,7 @@
             <strong>14+</strong><span>years building for the web</span>
           </div>
           <div class="metric">
-            <strong>08</strong
+            <strong>12</strong
             ><span>featured open-source projects and more to come.</span>
           </div>
           <div class="metric">
@@ -808,40 +820,8 @@
               </div>
             </article>
 
-            <article class="project reveal" style="--project-color: #f6bd60">
-              <span class="project-index mono">02</span>
-              <div>
-                <h3>Chord Atlas</h3>
-                <p>
-                  A visual chord reference designed for fast browsing,
-                  comparison, and musical discovery.
-                </p>
-              </div>
-              <div class="tags">
-                <span class="tag mono">JavaScript</span
-                ><span class="tag mono">Music UI</span
-                ><span class="tag mono">Chord library</span>
-              </div>
-              <div class="project-links">
-                <a
-                  class="project-link live"
-                  href="https://chord-atlas-amber.vercel.app/"
-                  target="_blank"
-                  rel="noreferrer"
-                  >Live demo ↗</a
-                >
-                <a
-                  class="project-link"
-                  href="https://github.com/craigdanj/chord-atlas"
-                  target="_blank"
-                  rel="noreferrer"
-                  >Source ↗</a
-                >
-              </div>
-            </article>
-
             <article class="project reveal" style="--project-color: #74a8ff">
-              <span class="project-index mono">03</span>
+              <span class="project-index mono">02</span>
               <div>
                 <h3>Chord Sheet</h3>
                 <p>
@@ -865,6 +845,38 @@
                 <a
                   class="project-link"
                   href="https://github.com/craigdanj/chord-sheet-js"
+                  target="_blank"
+                  rel="noreferrer"
+                  >Source ↗</a
+                >
+              </div>
+            </article>
+
+            <article class="project reveal" style="--project-color: #fb7185">
+              <span class="project-index mono">03</span>
+              <div>
+                <h3>Drum Synth JS</h3>
+                <p>
+                  An eight-voice browser drum synth and sequencer for shaping,
+                  arranging, and playing electronic kits.
+                </p>
+              </div>
+              <div class="tags">
+                <span class="tag mono">JavaScript</span
+                ><span class="tag mono">Web Audio</span
+                ><span class="tag mono">Synthesizer</span>
+              </div>
+              <div class="project-links">
+                <a
+                  class="project-link live"
+                  href="https://drum-synth-js.vercel.app/demo/standalone.html"
+                  target="_blank"
+                  rel="noreferrer"
+                  >Live demo ↗</a
+                >
+                <a
+                  class="project-link"
+                  href="https://github.com/craigdanj/Drum-Synth-JS"
                   target="_blank"
                   rel="noreferrer"
                   >Source ↗</a
@@ -936,27 +948,34 @@
               </div>
             </article>
 
-            <article class="project reveal" style="--project-color: #c4a7ff">
+            <article class="project reveal" style="--project-color: #38bdf8">
               <span class="project-index mono">06</span>
               <div>
-                <h3>ChordsDB ChordShape Adapter</h3>
+                <h3>Candle Stick JS</h3>
                 <p>
-                  A lightweight adapter that converts ChordsDB data into chord
-                  diagrams rendered with Chord Shape JS.
+                  A lightweight SVG candlestick chart with responsive rendering
+                  and precise hover details for financial data.
                 </p>
               </div>
               <div class="tags">
                 <span class="tag mono">JavaScript</span
-                ><span class="tag mono">Adapter</span
-                ><span class="tag mono">Music data</span>
+                ><span class="tag mono">SVG</span
+                ><span class="tag mono">Data visualization</span>
               </div>
               <div class="project-links">
                 <a
                   class="project-link live"
-                  href="https://github.com/craigdanj/chordsdb-chordshape-adapter"
+                  href="https://candle-stick-js.vercel.app/"
                   target="_blank"
                   rel="noreferrer"
-                  >View on GitHub ↗</a
+                  >Live demo ↗</a
+                >
+                <a
+                  class="project-link"
+                  href="https://github.com/craigdanj/candle-stick-js"
+                  target="_blank"
+                  rel="noreferrer"
+                  >Source ↗</a
                 >
               </div>
             </article>
@@ -1011,6 +1030,127 @@
                 <a
                   class="project-link live"
                   href="https://github.com/craigdanj/vue-day-schedule"
+                  target="_blank"
+                  rel="noreferrer"
+                  >View on GitHub ↗</a
+                >
+              </div>
+            </article>
+
+            <article class="project reveal" style="--project-color: #91dc47">
+              <span class="project-index mono">09</span>
+              <div>
+                <h3>VS Code Clojure Theme Editor</h3>
+                <p>
+                  A visual editor for designing and previewing Clojure-focused
+                  VS Code color themes directly in the browser.
+                </p>
+              </div>
+              <div class="tags">
+                <span class="tag mono">JavaScript</span
+                ><span class="tag mono">Developer tool</span
+                ><span class="tag mono">Clojure</span>
+              </div>
+              <div class="project-links">
+                <a
+                  class="project-link live"
+                  href="https://vscode-clojure-theme-editor.vercel.app/theme-editor.html"
+                  target="_blank"
+                  rel="noreferrer"
+                  >Live demo ↗</a
+                >
+                <a
+                  class="project-link"
+                  href="https://github.com/craigdanj/vscode-clojure-theme-editor"
+                  target="_blank"
+                  rel="noreferrer"
+                  >Source ↗</a
+                >
+              </div>
+            </article>
+
+            <article class="project reveal" style="--project-color: #5881d8">
+              <span class="project-index mono">10</span>
+              <div>
+                <h3>Clojure One</h3>
+                <p>
+                  A VS Code color theme designed specifically for Clojure, with
+                  syntax highlighting tuned to work especially well with Calva.
+                </p>
+              </div>
+              <div class="tags">
+                <span class="tag mono">Clojure</span
+                ><span class="tag mono">VS Code</span
+                ><span class="tag mono">Calva</span>
+              </div>
+              <div class="project-links">
+                <a
+                  class="project-link live"
+                  href="https://clojure-one.vercel.app/clojure-one-preview.html"
+                  target="_blank"
+                  rel="noreferrer"
+                  >Live demo ↗</a
+                >
+                <a
+                  class="project-link"
+                  href="https://github.com/craigdanj/Clojure-One"
+                  target="_blank"
+                  rel="noreferrer"
+                  >Source ↗</a
+                >
+              </div>
+            </article>
+
+            <article class="project reveal" style="--project-color: #f6bd60">
+              <span class="project-index mono">11</span>
+              <div>
+                <h3>Chord Atlas</h3>
+                <p>
+                  A visual chord reference designed for fast browsing,
+                  comparison, and musical discovery.
+                </p>
+              </div>
+              <div class="tags">
+                <span class="tag mono">JavaScript</span
+                ><span class="tag mono">Music UI</span
+                ><span class="tag mono">Chord library</span>
+              </div>
+              <div class="project-links">
+                <a
+                  class="project-link live"
+                  href="https://chord-atlas-amber.vercel.app/"
+                  target="_blank"
+                  rel="noreferrer"
+                  >Live demo ↗</a
+                >
+                <a
+                  class="project-link"
+                  href="https://github.com/craigdanj/chord-atlas"
+                  target="_blank"
+                  rel="noreferrer"
+                  >Source ↗</a
+                >
+              </div>
+            </article>
+
+            <article class="project reveal" style="--project-color: #c4a7ff">
+              <span class="project-index mono">12</span>
+              <div>
+                <h3>ChordsDB ChordShape Adapter</h3>
+                <p>
+                  A lightweight adapter that converts ChordsDB data into chord
+                  diagrams rendered with Chord Shape JS.
+                </p>
+              </div>
+              <div class="tags">
+                <span class="tag mono">JavaScript</span
+                ><span class="tag mono">Adapter</span
+                ><span class="tag mono">Music data</span>
+              </div>
+              <div class="project-links">
+                <a
+                  class="project-link live"
+                  href="https://github.com/craigdanj/chordsdb-chordshape-adapter"
                   target="_blank"
                   rel="noreferrer"
                   >View on GitHub ↗</a
